@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.record="http:///orgomg/cwm/resource/record.ecore">
+  <TalendMetadata:FileExcelConnection xmi:id="_78TSACV5EfGKe7YRL6s_ag" name="venuess" id="_78Q1wCV5EfGKe7YRL6s_ag" dataPackage="_78TSASV5EfGKe7YRL6s_ag" Server="Localhost 127.0.0.1" FilePath="C:/Users/user/Downloads/fichier excel modifié/venues_clean_columns.xlsx" Encoding="UTF-8" UseHeader="true" HeaderValue="1" FirstLineCaption="true" SheetName="venues" firstColumn="1" thousandSeparator="';'" decimalSeparator="'.'" advancedSpearator="true" selectAllSheets="true" sheetList="venues:w&#xA;" generationMode="USER_MODE">
+    <sheetColumns>A</sheetColumns>
+    <sheetColumns>B</sheetColumns>
+    <sheetColumns>C</sheetColumns>
+    <sheetColumns>D</sheetColumns>
+    <sheetColumns>E</sheetColumns>
+    <sheetColumns>F</sheetColumns>
+  </TalendMetadata:FileExcelConnection>
+  <orgomg.cwm.resource.record:RecordFile xmi:id="_78TSASV5EfGKe7YRL6s_ag" name="default" dataManager="_78TSACV5EfGKe7YRL6s_ag">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="_78TSAiV5EfGKe7YRL6s_ag" id="_weOFICV5EfGKe7YRL6s_ag" label="venues">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_D_VHwCWPEfGKe7YRL6s_ag" label="venue_name_city_venue_type_capacity_min_capacity_max_raw_capacity" length="68" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+    </ownedElement>
+  </orgomg.cwm.resource.record:RecordFile>
+</xmi:XMI>

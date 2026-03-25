@@ -43,7 +43,7 @@
     <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:Eaujm/tvN9H0x9leuPIp3D5rOk9VBf3/R6OGl+O5" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:1fgxldxzQPpB3vwyZcxh2MNcSLll4THCIbNfef6h" show="false"/>
     <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
@@ -78,7 +78,7 @@
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:ZYcW9TK8euw8pTL/DWMbx+6vp5NRj8cmhb5YNBmn" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:wcV9Zl8Qaw90+7+rv4pUuG5tybRWfcF1sBimRAGd" show="false"/>
     <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
@@ -107,7 +107,7 @@
     <routinesParameter id="_hyVxQPbvEfCQdZWkvXEjJg" name="TalendStringUtil"/>
     <routinesParameter id="_hyKLEPbvEfCQdZWkvXEjJg" name="TalendString"/>
   </parameters>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="128">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_1" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -120,7 +120,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Event_SA&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;event&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:N9meM3vWaGMm+ZjqXOPp4mRm8m7VZrM7Ay+m9a+1ln26"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:ti//UZOrk6Ajo3qDqhfCERlO2Y+GiMqjneFQuuNJfLUT"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Reservation&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -161,7 +161,7 @@
       <column comment="" key="false" length="-1" name="reservation_date" nullable="true" pattern="" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="864" posY="192">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="608" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_1" show="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -215,7 +215,7 @@
         <mapperTableEntries name="id_category" expression="row7.id_category == null ? 0 : row7.id_category " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_weather" expression="row8.id_weather" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_trend" expression="row9.id_trend " type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="id_concurrence" expression="row10.id_concurrence" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="id_concurrence" expression="row10.dim_concurrence_id" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_localisation" expression="row13.id_localisation " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_subcategory" expression="row11.id_subcategory " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="market_count" expression="row12.market_count_googlemaps " type="id_Integer" nullable="true"/>
@@ -226,7 +226,7 @@
         <mapperTableEntries name="id_venue" expression="row17.id_venue " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_entertainer" expression="row18.id_entertainer " type="id_Integer" nullable="true"/>
       </outputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row1" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row1" minimized="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="id_reservation" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_service" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_event" type="id_Integer" nullable="true"/>
@@ -234,90 +234,90 @@
         <mapperTableEntries name="final_price" type="id_Float" nullable="true"/>
         <mapperTableEntries name="reservation_date" type="id_Date" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row2" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row2" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_service" expression="row1.id_service" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="title" type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row3" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row3" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_event" expression="row1.id_event" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="type" expression="" type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row4" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row4" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="Date" expression="TalendDate.parseDate(&#xD;&#xA;    &quot;yyyy-MM-dd&quot;,&#xD;&#xA;    TalendDate.formatDate(&quot;yyyy-MM-dd&quot;, row1.reservation_date)&#xD;&#xA;) " type="id_Date" nullable="true"/>
         <mapperTableEntries name="Date_PK" type="id_Integer" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row5" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row5" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="date" expression="TalendDate.parseDate(&#xD;&#xA;    &quot;yyyy-MM-dd&quot;,&#xD;&#xA;    TalendDate.formatDate(&quot;yyyy-MM-dd&quot;, row4.Date)&#xD;&#xA;) " type="id_Date" nullable="true"/>
         <mapperTableEntries name="reservations" expression="" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="visitors" type="id_Integer" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row6" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row6" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="month" expression="TalendDate.formatDate(&quot;yyyy-MM&quot;, row4.Date) " type="id_String" nullable="true"/>
         <mapperTableEntries name="marketing_spend" type="id_Float" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row7" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
-        <mapperTableEntries name="id_category" expression="" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="name" expression="row3.type == null ? &quot;Others&quot; :&#xD;&#xA;&quot;Corporate Event&quot;.equals(row3.type) ? &quot;Corporate&quot; :&#xD;&#xA;&quot;Private Party&quot;.equals(row3.type) ? &quot;Others&quot; :&#xD;&#xA;(&quot;Wedding&quot;.equals(row3.type) || &quot;Birthday&quot;.equals(row3.type)) ? row3.type :&#xD;&#xA;&quot;Others&quot; " type="id_String" nullable="true"/>
+      <inputTables sizeState="INTERMEDIATE" name="row7" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
+        <mapperTableEntries name="id_category" expression=" " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="name" expression="row3.type == null ? null :&#xD;&#xA;&#xD;&#xA;&quot;CORPORATE EVENT&quot;.equalsIgnoreCase(row3.type) ? &quot;Corporate&quot; :&#xD;&#xA;&#xD;&#xA;&quot;PRIVATE PARTY&quot;.equalsIgnoreCase(row3.type) ? &quot;Birthday&quot; :&#xD;&#xA;&#xD;&#xA;(&quot;WEDDING&quot;.equalsIgnoreCase(row3.type) || &#xD;&#xA; &quot;BIRTHDAY&quot;.equalsIgnoreCase(row3.type)) ? row3.type :&#xD;&#xA;&#xD;&#xA;null " type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row8" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row8" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="date" expression="TalendDate.parseDate(&#xD;&#xA;    &quot;yyyy-MM-dd&quot;,&#xD;&#xA;    TalendDate.formatDate(&quot;yyyy-MM-dd&quot;, row4.Date)&#xD;&#xA;) " type="id_Date" nullable="true"/>
         <mapperTableEntries name="weather_code" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_weather" type="id_Integer" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row9" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row9" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_trend" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="category" expression="row7.name" type="id_String" nullable="true"/>
+        <mapperTableEntries name="category" expression="row7.name " type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row10" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
-        <mapperTableEntries name="id_concurrence" type="id_Integer" nullable="true"/>
+      <inputTables sizeState="INTERMEDIATE" name="row10" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
+        <mapperTableEntries name="dim_concurrence_id" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="city" type="id_String" nullable="true"/>
         <mapperTableEntries name="country" expression="" type="id_String" nullable="true"/>
         <mapperTableEntries name="category" expression="row3.type == null ? null :&#xD;&#xA;row3.type.toUpperCase().contains(&quot;BIRTHDAY&quot;) ? &quot;Private / Birthday / Miscellaneous&quot; :&#xD;&#xA;row3.type.toUpperCase().contains(&quot;WEDDING&quot;) ? &quot;Wedding / Concerts / Music&quot; :&#xD;&#xA;row3.type.toUpperCase().contains(&quot;BUSINESS&quot;) || &#xD;&#xA;row3.type.toUpperCase().contains(&quot;CORPORATE&quot;) ? &quot;business&quot; : null " type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row11" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row11" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_service" expression="row2.id_service" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_subcategory" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="title" type="id_String" nullable="true"/>
         <mapperTableEntries name="id_provider" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="city" type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row13" minimized="true" expressionFilter="row13.city != null&#xD;&#xA;&amp;&amp; row11.city != null&#xD;&#xA;&amp;&amp; StringHandling.TRIM(row13.city)&#xD;&#xA;   .equalsIgnoreCase(StringHandling.TRIM(row11.city))" activateExpressionFilter="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row13" expressionFilter="row13.city != null&#xD;&#xA;&amp;&amp; row11.city != null&#xD;&#xA;&amp;&amp; StringHandling.TRIM(row13.city)&#xD;&#xA;   .equalsIgnoreCase(StringHandling.TRIM(row11.city))" activateExpressionFilter="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_localisation" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="city" expression="row11.city" type="id_String" nullable="true"/>
         <mapperTableEntries name="country" type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row12" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row12" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_category" expression="row7.id_category" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_subcategory" expression="row11.id_subcategory" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="ville" expression="row13.city" type="id_String" nullable="true"/>
         <mapperTableEntries name="market_count_googlemaps" type="id_Integer" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row14" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row14" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_event" expression="row3.id_event" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_beneficiary" type="id_Integer" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row15" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row15" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_evaluation" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_reservation" expression="row1.id_reservation" type="id_Integer" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row16" expressionFilter="row11.id_provider != null &#xA;&amp;&amp; row14.id_beneficiary != null" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row16" expressionFilter="row11.id_provider != null &#xA;&amp;&amp; row14.id_beneficiary != null" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_complaint" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_provider" expression="row11.id_provider " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="id_beneficiary" expression="" type="id_Integer" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row17" minimized="true" expressionFilter="row11.city != null" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row17" expressionFilter="row11.city != null" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_venue" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="city" expression="StringHandling.TRIM(row11.city)" type="id_String" nullable="true"/>
+        <mapperTableEntries name="city" expression="StringHandling.TRIM(row11.city) " type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row18" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row18" minimized="true" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="id_entertainer" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="categorie" expression="row7.name == null ? null :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;BIRTHDAY&quot;) ? &quot;Singer&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;BIRTHDAY&quot;) ? &quot;Humor&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;BIRTHDAY&quot;) ? &quot;Makeup Artist&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;BIRTHDAY&quot;) ? &quot;Photographer&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;BIRTHDAY&quot;) ? &quot;Food&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;WEDDING&quot;) ? &quot;Singer, Actors&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;WEDDING&quot;) ? &quot;Fashion&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;WEDDING&quot;) ? &quot;Modeling&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;WEDDING&quot;) ? &quot;Photographer&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;CORPORATE&quot;) ? &quot;Actors, TV Host&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;CORPORATE&quot;) ? &quot;TV Host&quot; :&#xD;&#xA;row7.name.toUpperCase().contains(&quot;CORPORATE&quot;) ? &quot;Video Blogger&quot; : &quot;Singer&quot; " type="id_String" nullable="true"/>
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="12" offsetLabelY="-4" posX="320" posY="192">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="12" offsetLabelY="-4" posX="64" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_2" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -330,13 +330,13 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Nu3XzC/ZbcVWzmawXujFJMrbhoD++x+EGyXLTsTnzaE="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Service&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:eeMZUOlc7Q4EplGe8hpMyabet2CHno5Itl4HNlFHphs="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Service01&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.Dim_Service.id_service,&#xA;&#x9;&#x9;dbo.Dim_Service.title&#xA;FROM&#x9;dbo.Dim_Service&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.Dim_Service01.id_service,&#xA;&#x9;&#x9;dbo.Dim_Service01.title&#xA;FROM&#x9;dbo.Dim_Service01&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -359,7 +359,7 @@
       <column comment="" key="false" length="-1" name="title" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="832" posY="64">
+  <node componentName="tMSSqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBOutput_1" show="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_mYoscAtzEfG4PfwVdlu5Aw" show="false"/>
@@ -372,11 +372,11 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="TYPE" value="MSSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:gQNdhoZiHnQnAdT12DltsSIH5l/d/W5Xg9af/G4sLYI="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:hj93zkgY6v3AyYh2B7y5zWGyUrLZXU1ZdXJqjcvF+hE="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;FACT_VENTES&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CHECK" name="IDENTITY_INSERT" value="false"/>
-    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE_OR_INSERT"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
     <elementParameter field="LABEL" name="NOTE" value="NOTE: batch size must be less than or equal to total number of parameter markers divided by number of columns" show="false"/>
     <elementParameter field="CHECK" name="SPECIFY_IDENTITY_FIELD" value="false" show="false"/>
     <elementParameter field="COLUMN_LIST" name="IDENTITY_FIELD" value="id_service" show="false"/>
@@ -511,8 +511,8 @@
     <elementParameter field="CHECK" name="IGNORE_DATE_OUTOF_RANGE" value="false"/>
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
-    <elementParameter field="CHECK" name="USE_BATCH_SIZE" value="true" show="false"/>
-    <elementParameter field="TEXT" name="BATCH_SIZE" value="10000" show="false"/>
+    <elementParameter field="CHECK" name="USE_BATCH_SIZE" value="true"/>
+    <elementParameter field="TEXT" name="BATCH_SIZE" value="10000"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="out" name="tDBOutput_1">
       <column comment="" key="true" length="-1" name="id_reservation" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
@@ -565,7 +565,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="288">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_3" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -578,7 +578,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:C/wYvmkH0TihMJBiiOUdBbmklkCnRl4WdrzfU8yu3Bg="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:NJnP79AEtUSpkawkoQpR+YqN2hCSfX+TDPynus20Mps="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Event&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -607,7 +607,7 @@
       <column comment="" key="false" length="-1" name="type" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="384">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_4" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -620,7 +620,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:2CDPZFh4gwQMT4ouxaJGhNGO7+GxpVnE7ZlMp/tvjJo="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:22FWFlePvDd4ttSiesFfjtoRugp46dqs61zRPudq844="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;DimDates&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -648,7 +648,7 @@
       <column comment="" key="false" length="-1" name="Date_PK" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="480">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_5" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -661,7 +661,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Event_SA&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;event&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Se7KkRFAF4kUAXb8ndIRrthQUa++RsLwuCB6sF5wprFB"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:qmy2RATeU8TI7wU493glsSOMRGQ52TI2+uNP9VEsZrwr"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Visitors&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -695,7 +695,7 @@
       <column comment="" key="false" length="-1" name="visitors" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="576">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_6" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -708,7 +708,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Event_SA&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;event&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:oyJPPx7J1hnw8YMxG6yl0ys25Rqecn10YwZoCDPyGi97"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:sDlnVH6QAh+drcBGd2LfDTSClaO7a49C3brC3GEtme0G"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Marketing_spend&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -739,7 +739,7 @@
       <column comment="" key="false" length="-1" name="marketing_spend" nullable="true" pattern="" precision="-1" sourceType="FLOAT" type="id_Float" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="448" posY="608">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="576">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_7" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -752,7 +752,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Ay+meulph65i/7KQBrTvDYS8v3THNF2fqPJfQbwpefg="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:D728QOzBCeMJSebiIJPnRvfkaCGKJSiEYpCoP/Ysdm8="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Category&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -780,7 +780,7 @@
       <column comment="" key="false" length="-1" name="name" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="640" posY="640">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_8" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -793,7 +793,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Uh36C0+bMnnX9pQiZy4AUwkb9pS9vIdGs9XXlwyifnU="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:LPgIJmSyWi5PswcZdBP38bTyTjihaVFDUq/PUcJzy4Q="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Weather&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -824,7 +824,7 @@
       <column comment="" key="false" length="-1" name="id_weather" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="640">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_9" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -837,7 +837,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:IMoAJPywqRaIbsCvzBRN1F1unypeskCV5+r3aT3zpTU="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:PaubkF191HGjgZ6wnqhTM3G7t8U5KeDqwInRlLQyIPM="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Trends&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -865,7 +865,7 @@
       <column comment="" key="false" length="-1" name="category" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="928" posY="640">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="672" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_10" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -878,13 +878,13 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Vox0JY3v88fKEgAaGa+mnICIMLOYp071/Z9HO7IGvZs="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:tgPseLDHfEgl1DFgXm0bbIDoa3dW0MQAs/j6MYOs7Bo="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Concurrence&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.Dim_Concurrence.id_concurrence,&#xA;&#x9;&#x9;dbo.Dim_Concurrence.city,&#xA;&#x9;&#x9;dbo.Dim_Concurrence.country,&#xA;&#x9;&#x9;dbo.Dim_Concurrence.category&#xA;FROM&#x9;dbo.Dim_Concurrence&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.Dim_Concurrence.dim_concurrence_id,&#xA;&#x9;&#x9;dbo.Dim_Concurrence.city,&#xA;&#x9;&#x9;dbo.Dim_Concurrence.country,&#xA;&#x9;&#x9;dbo.Dim_Concurrence.category&#xA;FROM&#x9;dbo.Dim_Concurrence&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -895,7 +895,7 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="id_concurrence"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="dim_concurrence_id"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="city"/>
       <elementValue elementRef="TRIM" value="false"/>
@@ -906,13 +906,13 @@
     </elementParameter>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_10">
-      <column comment="" key="false" length="-1" name="id_concurrence" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dim_concurrence_id" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="city" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="country" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="category" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="640">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_13" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -925,7 +925,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Event_SA&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;event&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:NYt6/5adalO3ZAbMLXADZWdno4E9SL2HGtHkKC+0qxNA"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:w/k40ZhScOuB8+dV1aHEYerY3A+H7wQE163MwkSGxjG1"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Service&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -962,7 +962,7 @@
       <column comment="" key="false" length="-1" name="city" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1184" posY="640">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="928" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_11" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -975,7 +975,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Ho2iS23PtBVnq9ZBOUQNjS88YKppnB1vkChjLSgyMoc="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:s20s/hvj58uxKbkQ9ge9CkIOJta25GEVpm+DA7nHOeA="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Localisation&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -1006,7 +1006,7 @@
       <column comment="" key="false" length="-1" name="country" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1312" posY="640">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_12" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -1019,7 +1019,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Event_SA&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;event&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:K4eHiLFFVzd5K+dLBCbWMjpIV5RFLFfdDzELfgx6mPjb"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:fa1zha57MMVLMjdPwPCeO4iOV9fPlsBb5JEsE0e50iXP"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;marketCount&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -1053,7 +1053,7 @@
       <column comment="" key="false" length="-1" name="market_count_googlemaps" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1408" posY="608">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="576">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_14" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -1066,7 +1066,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Event_SA&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;event&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:/XPwaqrr98xejXt/men7UjbXpNQEUug/A6oaDiLIqKkP"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:tNeI1YimvmQqAqHz3mM1LKZg4nWk5x9VYdSQ/tC85OCi"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Event&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -1094,7 +1094,7 @@
       <column comment="" key="false" length="-1" name="id_beneficiary" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1408" posY="512">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="480">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_15" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -1107,7 +1107,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Event_SA&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;event&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:/qR4WbeiGl1qOcuhLxocXmkcDJyslawd9+QqQFAzWt3S"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:PudPspbcJsRULKuU1AJHf5zlJSuouvjdYYpYYDyFiFwy"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Evaluation&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -1135,7 +1135,7 @@
       <column comment="" key="false" length="-1" name="id_reservation" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1408" posY="416">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_16" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -1148,7 +1148,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Event_SA&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;event&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:L0xcj2Am7BcFhZogPpquo48s/km3bq/F2ruOI09rqv3I"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:MXfcFVi7HPYX5R3mjVqbKJsst4eZVfP1meGf/Y/nduS/"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Complaint&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -1179,7 +1179,7 @@
       <column comment="" key="false" length="-1" name="id_beneficiary" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1408" posY="256">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_17" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -1192,7 +1192,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Rreg6uWHoHUd4PDZsuQ3BNUoi8vrxWYd2r1tSYOXYuw="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:rGOY5DbD3qa3HaiznZFXVvQP878ZtjEkLKd88F7cthM="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Venue&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -1220,7 +1220,7 @@
       <column comment="" key="false" length="-1" name="city" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1440" posY="160">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_18" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -1233,7 +1233,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;event_DWH&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;bi&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:rFMmqUuZw9AkE3fmVI3w7Jcddf2UwZ5rxwHRaHEd0E8="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:qxQ/hJ61T0yPq3IF8VyScMaJ/TM4PxsuJfEQoG+GqRs="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Dim_Entertainer&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>

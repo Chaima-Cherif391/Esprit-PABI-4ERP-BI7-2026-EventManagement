@@ -374,6 +374,12 @@ public class venues_DWH implements TalendJob {
 			return this.raw_capacity;
 		}
 
+		public String Province;
+
+		public String getProvince() {
+			return this.Province;
+		}
+
 		@Override
 		public int hashCode() {
 			if (this.hashCodeDirty) {
@@ -418,6 +424,7 @@ public class venues_DWH implements TalendJob {
 			other.capacity_min = this.capacity_min;
 			other.capacity_max = this.capacity_max;
 			other.raw_capacity = this.raw_capacity;
+			other.Province = this.Province;
 
 		}
 
@@ -551,6 +558,8 @@ public class venues_DWH implements TalendJob {
 
 					this.raw_capacity = readString(dis);
 
+					this.Province = readString(dis);
+
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 
@@ -581,6 +590,8 @@ public class venues_DWH implements TalendJob {
 					this.capacity_max = readInteger(dis);
 
 					this.raw_capacity = readString(dis);
+
+					this.Province = readString(dis);
 
 				} catch (IOException e) {
 					throw new RuntimeException(e);
@@ -622,6 +633,10 @@ public class venues_DWH implements TalendJob {
 
 				writeString(this.raw_capacity, dos);
 
+				// String
+
+				writeString(this.Province, dos);
+
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -659,6 +674,10 @@ public class venues_DWH implements TalendJob {
 
 				writeString(this.raw_capacity, dos);
 
+				// String
+
+				writeString(this.Province, dos);
+
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -677,6 +696,7 @@ public class venues_DWH implements TalendJob {
 			sb.append(",capacity_min=" + String.valueOf(capacity_min));
 			sb.append(",capacity_max=" + String.valueOf(capacity_max));
 			sb.append(",raw_capacity=" + raw_capacity);
+			sb.append(",Province=" + Province);
 			sb.append("]");
 
 			return sb.toString();
@@ -1098,13 +1118,6 @@ public class venues_DWH implements TalendJob {
 				java.util.Calendar calendar_datetimeoffset_tDBOutput_1 = java.util.Calendar
 						.getInstance(java.util.TimeZone.getTimeZone("UTC"));
 
-				int updateKeyCount_tDBOutput_1 = 1;
-				if (updateKeyCount_tDBOutput_1 < 1) {
-					throw new RuntimeException("For update, Schema must have a key");
-				} else if (updateKeyCount_tDBOutput_1 == 7 && true) {
-					System.err.println("For update, every Schema column can not be a key");
-				}
-
 				java.sql.Connection conn_tDBOutput_1 = null;
 				String dbUser_tDBOutput_1 = null;
 				dbschema_tDBOutput_1 = "dbo";
@@ -1125,7 +1138,7 @@ public class venues_DWH implements TalendJob {
 				dbUser_tDBOutput_1 = "bi";
 
 				final String decryptedPassword_tDBOutput_1 = routines.system.PasswordEncryptUtil
-						.decryptPassword("enc:routine.encryption.key.v1:g2xHTwu2zbG0fDi5t+t9ZKYUOjECOvQ9HLnlvMN7");
+						.decryptPassword("enc:routine.encryption.key.v1:uYUTW4YvaYGYc/UXUNCHiqtnwGMI61f6zvlvzSNK");
 
 				String dbPwd_tDBOutput_1 = decryptedPassword_tDBOutput_1;
 				conn_tDBOutput_1 = java.sql.DriverManager.getConnection(url_tDBOutput_1, dbUser_tDBOutput_1,
@@ -1137,6 +1150,9 @@ public class venues_DWH implements TalendJob {
 				int commitEvery_tDBOutput_1 = 10000;
 				int commitCounter_tDBOutput_1 = 0;
 
+				int batchSize_tDBOutput_1 = 10000;
+				int batchSizeCounter_tDBOutput_1 = 0;
+
 				if (dbschema_tDBOutput_1 == null || dbschema_tDBOutput_1.trim().length() == 0) {
 					tableName_tDBOutput_1 = "Dim_Venue";
 				} else {
@@ -1144,16 +1160,10 @@ public class venues_DWH implements TalendJob {
 				}
 				int count_tDBOutput_1 = 0;
 
-				String update_tDBOutput_1 = "UPDATE [" + tableName_tDBOutput_1
-						+ "] SET [venue_name] = ?,[city] = ?,[venue_type] = ?,[capacity_min] = ?,[capacity_max] = ?,[raw_capacity] = ? WHERE [id_venue] = ?";
-				java.sql.PreparedStatement pstmtUpdate_tDBOutput_1 = conn_tDBOutput_1
-						.prepareStatement(update_tDBOutput_1);
-				resourceMap.put("pstmtUpdate_tDBOutput_1", pstmtUpdate_tDBOutput_1);
 				String insert_tDBOutput_1 = "INSERT INTO [" + tableName_tDBOutput_1
-						+ "] ([id_venue],[venue_name],[city],[venue_type],[capacity_min],[capacity_max],[raw_capacity]) VALUES (?,?,?,?,?,?,?)";
-				java.sql.PreparedStatement pstmtInsert_tDBOutput_1 = conn_tDBOutput_1
-						.prepareStatement(insert_tDBOutput_1);
-				resourceMap.put("pstmtInsert_tDBOutput_1", pstmtInsert_tDBOutput_1);
+						+ "] ([id_venue],[venue_name],[city],[venue_type],[capacity_min],[capacity_max],[raw_capacity],[Province]) VALUES (?,?,?,?,?,?,?,?)";
+				java.sql.PreparedStatement pstmt_tDBOutput_1 = conn_tDBOutput_1.prepareStatement(insert_tDBOutput_1);
+				resourceMap.put("pstmt_tDBOutput_1", pstmt_tDBOutput_1);
 
 				/**
 				 * [tDBOutput_1 begin ] stop
@@ -1219,7 +1229,7 @@ public class venues_DWH implements TalendJob {
 				String dbUser_tDBInput_1 = "event";
 
 				final String decryptedPassword_tDBInput_1 = routines.system.PasswordEncryptUtil
-						.decryptPassword("enc:routine.encryption.key.v1:So3lfHj35XW+jB8FUgm9eDuxQ7qefv9DfvMhOmSPDQ==");
+						.decryptPassword("enc:routine.encryption.key.v1:7/THcLc8d1qroS/Urx7DG3eTlQJVbFJ89XCU7XOnbA==");
 
 				String dbPwd_tDBInput_1 = decryptedPassword_tDBInput_1;
 
@@ -1406,6 +1416,210 @@ public class venues_DWH implements TalendJob {
 							out_tmp.capacity_min = row1.capacity_min == null ? 0 : row1.capacity_min;
 							out_tmp.capacity_max = row1.capacity_max == null ? 0 : row1.capacity_max;
 							out_tmp.raw_capacity = row1.raw_capacity == null ? " UNKNOWN" : row1.raw_capacity;
+							out_tmp.Province = row1.city == null ? null :
+
+// NORMALISATION
+									StringHandling.UPCASE(StringHandling.TRIM(row1.city)).contains("TUNIS")
+											|| StringHandling.UPCASE(row1.city).contains("LAC")
+											|| StringHandling.UPCASE(row1.city).contains("CARTHAGE")
+											|| StringHandling.UPCASE(row1.city).contains("GAMMARTH") ? "Tunis" :
+
+													StringHandling.UPCASE(row1.city).contains("ARIANA")
+															|| StringHandling.UPCASE(row1.city).contains("ENNASR")
+															|| StringHandling.UPCASE(row1.city).contains("MNIHLA")
+																	? "Ariana"
+																	:
+
+																	StringHandling.UPCASE(row1.city)
+																			.contains("BEN AROUS")
+																			|| StringHandling.UPCASE(row1.city)
+																					.contains("MOUROUJ") ? "Ben Arous" :
+
+																							StringHandling
+																									.UPCASE(row1.city)
+																									.contains("MANOUBA")
+																											? "Manouba"
+																											:
+
+																											StringHandling
+																													.UPCASE(row1.city)
+																													.contains(
+																															"HAMMAMET")
+																													|| StringHandling
+																															.UPCASE(row1.city)
+																															.contains(
+																																	"NABEUL")
+																													|| StringHandling
+																															.UPCASE(row1.city)
+																															.contains(
+																																	"KORBOUS")
+																																			? "Nabeul"
+																																			:
+
+																																			StringHandling
+																																					.UPCASE(row1.city)
+																																					.contains(
+																																							"SOUSSE")
+																																					|| StringHandling
+																																							.UPCASE(row1.city)
+																																							.contains(
+																																									"KANTAOUI")
+																																											? "Sousse"
+																																											:
+
+																																											StringHandling
+																																													.UPCASE(row1.city)
+																																													.contains(
+																																															"MONASTIR")
+																																																	? "Monastir"
+																																																	:
+
+																																																	StringHandling
+																																																			.UPCASE(row1.city)
+																																																			.contains(
+																																																					"MAHDIA")
+																																																							? "Mahdia"
+																																																							:
+
+																																																							StringHandling
+																																																									.UPCASE(row1.city)
+																																																									.contains(
+																																																											"SFAX") ? "Sfax"
+																																																													:
+
+																																																													StringHandling
+																																																															.UPCASE(row1.city)
+																																																															.contains(
+																																																																	"GABES")
+																																																															|| StringHandling
+																																																																	.UPCASE(row1.city)
+																																																																	.contains(
+																																																																			"GABÈS") ? "Gabes"
+																																																																					:
+
+																																																																					StringHandling
+																																																																							.UPCASE(row1.city)
+																																																																							.contains(
+																																																																									"DJERBA")
+																																																																							|| StringHandling
+																																																																									.UPCASE(row1.city)
+																																																																									.contains(
+																																																																											"MEDENINE")
+																																																																							|| StringHandling
+																																																																									.UPCASE(row1.city)
+																																																																									.contains(
+																																																																											"MÉDENINE")
+																																																																													? "Medenine"
+																																																																													:
+
+																																																																													StringHandling
+																																																																															.UPCASE(row1.city)
+																																																																															.contains(
+																																																																																	"KAIROUAN")
+																																																																																			? "Kairouan"
+																																																																																			:
+
+																																																																																			StringHandling
+																																																																																					.UPCASE(row1.city)
+																																																																																					.contains(
+																																																																																							"BIZERTE")
+																																																																																									? "Bizerte"
+																																																																																									:
+
+																																																																																									StringHandling
+																																																																																											.UPCASE(row1.city)
+																																																																																											.contains(
+																																																																																													"BEJA")
+																																																																																											|| StringHandling
+																																																																																													.UPCASE(row1.city)
+																																																																																													.contains(
+																																																																																															"BÉJA") ? "Beja"
+																																																																																																	:
+
+																																																																																																	StringHandling
+																																																																																																			.UPCASE(row1.city)
+																																																																																																			.contains(
+																																																																																																					"JENDOUBA")
+																																																																																																							? "Jendouba"
+																																																																																																							:
+
+																																																																																																							StringHandling
+																																																																																																									.UPCASE(row1.city)
+																																																																																																									.contains(
+																																																																																																											"KASSERINE")
+																																																																																																													? "Kasserine"
+																																																																																																													:
+
+																																																																																																													StringHandling
+																																																																																																															.UPCASE(row1.city)
+																																																																																																															.contains(
+																																																																																																																	"SIDI BOUZID")
+																																																																																																																			? "Sidi Bouzid"
+																																																																																																																			:
+
+																																																																																																																			StringHandling
+																																																																																																																					.UPCASE(row1.city)
+																																																																																																																					.contains(
+																																																																																																																							"GAFSA") ? "Gafsa"
+																																																																																																																									:
+
+																																																																																																																									StringHandling
+																																																																																																																											.UPCASE(row1.city)
+																																																																																																																											.contains(
+																																																																																																																													"TOZEUR")
+																																																																																																																															? "Tozeur"
+																																																																																																																															:
+
+																																																																																																																															StringHandling
+																																																																																																																																	.UPCASE(row1.city)
+																																																																																																																																	.contains(
+																																																																																																																																			"KEBILI")
+																																																																																																																																	|| StringHandling
+																																																																																																																																			.UPCASE(row1.city)
+																																																																																																																																			.contains(
+																																																																																																																																					"KÉBILI")
+																																																																																																																																							? "Kebili"
+																																																																																																																																							:
+
+																																																																																																																																							StringHandling
+																																																																																																																																									.UPCASE(row1.city)
+																																																																																																																																									.contains(
+																																																																																																																																											"ZAGHOUAN")
+																																																																																																																																													? "Zaghouan"
+																																																																																																																																													:
+
+																																																																																																																																													StringHandling
+																																																																																																																																															.UPCASE(row1.city)
+																																																																																																																																															.contains(
+																																																																																																																																																	"SILIANA")
+																																																																																																																																																			? "Siliana"
+																																																																																																																																																			:
+
+																																																																																																																																																			StringHandling
+																																																																																																																																																					.UPCASE(row1.city)
+																																																																																																																																																					.contains(
+																																																																																																																																																							"KEF") ? "Le Kef"
+																																																																																																																																																									:
+
+																																																																																																																																																									StringHandling
+																																																																																																																																																											.UPCASE(row1.city)
+																																																																																																																																																											.contains(
+																																																																																																																																																													"TATAOUINE")
+																																																																																																																																																															? "Tataouine"
+																																																																																																																																																															: StringHandling
+																																																																																																																																																																	.UPCASE(row1.city)
+																																																																																																																																																																	.contains(
+																																																																																																																																																																			"KASSERINE")
+																																																																																																																																																																					? "Kasserine"
+																																																																																																																																																																					: StringHandling
+																																																																																																																																																																							.UPCASE(row1.city)
+																																																																																																																																																																							.contains(
+																																																																																																																																																																									"SIDI BOUZID")
+																																																																																																																																																																											? "Sidi Bouzid"
+																																																																																																																																																																											:
+
+// DEFAULT
+																																																																																																																																																																											"Tunis";
 							out = out_tmp;
 // ###############################
 
@@ -1446,114 +1660,59 @@ public class venues_DWH implements TalendJob {
 							}
 
 							whetherReject_tDBOutput_1 = false;
-							int updateFlag_tDBOutput_1 = 0;
-							if (out.venue_name == null) {
-								pstmtUpdate_tDBOutput_1.setNull(1, java.sql.Types.VARCHAR);
+							if (out.id_venue == null) {
+								pstmt_tDBOutput_1.setNull(1, java.sql.Types.INTEGER);
 							} else {
-								pstmtUpdate_tDBOutput_1.setString(1, out.venue_name);
+								pstmt_tDBOutput_1.setInt(1, out.id_venue);
+							}
+
+							if (out.venue_name == null) {
+								pstmt_tDBOutput_1.setNull(2, java.sql.Types.VARCHAR);
+							} else {
+								pstmt_tDBOutput_1.setString(2, out.venue_name);
 							}
 
 							if (out.city == null) {
-								pstmtUpdate_tDBOutput_1.setNull(2, java.sql.Types.VARCHAR);
+								pstmt_tDBOutput_1.setNull(3, java.sql.Types.VARCHAR);
 							} else {
-								pstmtUpdate_tDBOutput_1.setString(2, out.city);
+								pstmt_tDBOutput_1.setString(3, out.city);
 							}
 
 							if (out.venue_type == null) {
-								pstmtUpdate_tDBOutput_1.setNull(3, java.sql.Types.VARCHAR);
+								pstmt_tDBOutput_1.setNull(4, java.sql.Types.VARCHAR);
 							} else {
-								pstmtUpdate_tDBOutput_1.setString(3, out.venue_type);
+								pstmt_tDBOutput_1.setString(4, out.venue_type);
 							}
 
 							if (out.capacity_min == null) {
-								pstmtUpdate_tDBOutput_1.setNull(4, java.sql.Types.INTEGER);
+								pstmt_tDBOutput_1.setNull(5, java.sql.Types.INTEGER);
 							} else {
-								pstmtUpdate_tDBOutput_1.setInt(4, out.capacity_min);
+								pstmt_tDBOutput_1.setInt(5, out.capacity_min);
 							}
 
 							if (out.capacity_max == null) {
-								pstmtUpdate_tDBOutput_1.setNull(5, java.sql.Types.INTEGER);
+								pstmt_tDBOutput_1.setNull(6, java.sql.Types.INTEGER);
 							} else {
-								pstmtUpdate_tDBOutput_1.setInt(5, out.capacity_max);
+								pstmt_tDBOutput_1.setInt(6, out.capacity_max);
 							}
 
 							if (out.raw_capacity == null) {
-								pstmtUpdate_tDBOutput_1.setNull(6, java.sql.Types.VARCHAR);
+								pstmt_tDBOutput_1.setNull(7, java.sql.Types.VARCHAR);
 							} else {
-								pstmtUpdate_tDBOutput_1.setString(6, out.raw_capacity);
+								pstmt_tDBOutput_1.setString(7, out.raw_capacity);
 							}
 
-							if (out.id_venue == null) {
-								pstmtUpdate_tDBOutput_1.setNull(7 + count_tDBOutput_1, java.sql.Types.INTEGER);
+							if (out.Province == null) {
+								pstmt_tDBOutput_1.setNull(8, java.sql.Types.VARCHAR);
 							} else {
-								pstmtUpdate_tDBOutput_1.setInt(7 + count_tDBOutput_1, out.id_venue);
+								pstmt_tDBOutput_1.setString(8, out.Province);
 							}
 
-							try {
-								updateFlag_tDBOutput_1 = pstmtUpdate_tDBOutput_1.executeUpdate();
-								updatedCount_tDBOutput_1 = updatedCount_tDBOutput_1 + updateFlag_tDBOutput_1;
-								rowsToCommitCount_tDBOutput_1 += updateFlag_tDBOutput_1;
-								if (updateFlag_tDBOutput_1 == 0) {
+							pstmt_tDBOutput_1.addBatch();
+							nb_line_tDBOutput_1++;
 
-									if (out.id_venue == null) {
-										pstmtInsert_tDBOutput_1.setNull(1, java.sql.Types.INTEGER);
-									} else {
-										pstmtInsert_tDBOutput_1.setInt(1, out.id_venue);
-									}
+							batchSizeCounter_tDBOutput_1++;
 
-									if (out.venue_name == null) {
-										pstmtInsert_tDBOutput_1.setNull(2, java.sql.Types.VARCHAR);
-									} else {
-										pstmtInsert_tDBOutput_1.setString(2, out.venue_name);
-									}
-
-									if (out.city == null) {
-										pstmtInsert_tDBOutput_1.setNull(3, java.sql.Types.VARCHAR);
-									} else {
-										pstmtInsert_tDBOutput_1.setString(3, out.city);
-									}
-
-									if (out.venue_type == null) {
-										pstmtInsert_tDBOutput_1.setNull(4, java.sql.Types.VARCHAR);
-									} else {
-										pstmtInsert_tDBOutput_1.setString(4, out.venue_type);
-									}
-
-									if (out.capacity_min == null) {
-										pstmtInsert_tDBOutput_1.setNull(5, java.sql.Types.INTEGER);
-									} else {
-										pstmtInsert_tDBOutput_1.setInt(5, out.capacity_min);
-									}
-
-									if (out.capacity_max == null) {
-										pstmtInsert_tDBOutput_1.setNull(6, java.sql.Types.INTEGER);
-									} else {
-										pstmtInsert_tDBOutput_1.setInt(6, out.capacity_max);
-									}
-
-									if (out.raw_capacity == null) {
-										pstmtInsert_tDBOutput_1.setNull(7, java.sql.Types.VARCHAR);
-									} else {
-										pstmtInsert_tDBOutput_1.setString(7, out.raw_capacity);
-									}
-
-									int processedCount_tDBOutput_1 = pstmtInsert_tDBOutput_1.executeUpdate();
-									insertedCount_tDBOutput_1 += processedCount_tDBOutput_1;
-									rowsToCommitCount_tDBOutput_1 += processedCount_tDBOutput_1;
-									nb_line_tDBOutput_1++;
-								} else {
-									nb_line_tDBOutput_1++;
-
-								}
-							} catch (java.lang.Exception e) {
-								globalMap.put("tDBOutput_1_ERROR_MESSAGE", e.getMessage());
-								whetherReject_tDBOutput_1 = true;
-								nb_line_tDBOutput_1++;
-
-								System.err.println(e.getMessage());
-							} finally {
-
-							}
 							////////// batch execute by batch size///////
 							class LimitBytesHelper_tDBOutput_1 {
 								public int limitBytePart1(int counter, java.sql.PreparedStatement pstmt_tDBOutput_1)
@@ -1605,11 +1764,27 @@ public class venues_DWH implements TalendJob {
 									return counter;
 								}
 							}
+							if ((batchSize_tDBOutput_1 > 0)
+									&& (batchSize_tDBOutput_1 <= batchSizeCounter_tDBOutput_1)) {
+
+								insertedCount_tDBOutput_1 = new LimitBytesHelper_tDBOutput_1()
+										.limitBytePart1(insertedCount_tDBOutput_1, pstmt_tDBOutput_1);
+								rowsToCommitCount_tDBOutput_1 = insertedCount_tDBOutput_1;
+
+								batchSizeCounter_tDBOutput_1 = 0;
+							}
 
 							//////////// commit every////////////
 
 							commitCounter_tDBOutput_1++;
 							if (commitEvery_tDBOutput_1 <= commitCounter_tDBOutput_1) {
+								if ((batchSize_tDBOutput_1 > 0) && (batchSizeCounter_tDBOutput_1 > 0)) {
+
+									insertedCount_tDBOutput_1 = new LimitBytesHelper_tDBOutput_1()
+											.limitBytePart1(insertedCount_tDBOutput_1, pstmt_tDBOutput_1);
+
+									batchSizeCounter_tDBOutput_1 = 0;
+								}
 								if (rowsToCommitCount_tDBOutput_1 != 0) {
 
 								}
@@ -1731,13 +1906,41 @@ public class venues_DWH implements TalendJob {
 
 				currentComponent = "tDBOutput_1";
 
-				if (pstmtUpdate_tDBOutput_1 != null) {
-					pstmtUpdate_tDBOutput_1.close();
-					resourceMap.remove("pstmtUpdate_tDBOutput_1");
+				try {
+					int countSum_tDBOutput_1 = 0;
+					if (pstmt_tDBOutput_1 != null && batchSizeCounter_tDBOutput_1 > 0) {
+
+						for (int countEach_tDBOutput_1 : pstmt_tDBOutput_1.executeBatch()) {
+							if (countEach_tDBOutput_1 == -2 || countEach_tDBOutput_1 == -3) {
+								break;
+							}
+							countSum_tDBOutput_1 += countEach_tDBOutput_1;
+						}
+						rowsToCommitCount_tDBOutput_1 += countSum_tDBOutput_1;
+
+					}
+
+					insertedCount_tDBOutput_1 += countSum_tDBOutput_1;
+
+				} catch (java.sql.BatchUpdateException e) {
+					globalMap.put("tDBOutput_1_ERROR_MESSAGE", e.getMessage());
+
+					int countSum_tDBOutput_1 = 0;
+					for (int countEach_tDBOutput_1 : e.getUpdateCounts()) {
+						countSum_tDBOutput_1 += (countEach_tDBOutput_1 < 0 ? 0 : countEach_tDBOutput_1);
+					}
+					rowsToCommitCount_tDBOutput_1 += countSum_tDBOutput_1;
+
+					insertedCount_tDBOutput_1 += countSum_tDBOutput_1;
+
+					System.err.println(e.getMessage());
+
 				}
-				if (pstmtInsert_tDBOutput_1 != null) {
-					pstmtInsert_tDBOutput_1.close();
-					resourceMap.remove("pstmtInsert_tDBOutput_1");
+				if (pstmt_tDBOutput_1 != null) {
+
+					pstmt_tDBOutput_1.close();
+					resourceMap.remove("pstmt_tDBOutput_1");
+
 				}
 				resourceMap.put("statementClosed_tDBOutput_1", true);
 				if (rowsToCommitCount_tDBOutput_1 != 0) {
@@ -1818,15 +2021,10 @@ public class venues_DWH implements TalendJob {
 
 				try {
 					if (resourceMap.get("statementClosed_tDBOutput_1") == null) {
-						java.sql.PreparedStatement pstmtUpdateToClose_tDBOutput_1 = null;
-						if ((pstmtUpdateToClose_tDBOutput_1 = (java.sql.PreparedStatement) resourceMap
-								.remove("pstmtUpdate_tDBOutput_1")) != null) {
-							pstmtUpdateToClose_tDBOutput_1.close();
-						}
-						java.sql.PreparedStatement pstmtInsertToClose_tDBOutput_1 = null;
-						if ((pstmtInsertToClose_tDBOutput_1 = (java.sql.PreparedStatement) resourceMap
-								.remove("pstmtInsert_tDBOutput_1")) != null) {
-							pstmtInsertToClose_tDBOutput_1.close();
+						java.sql.PreparedStatement pstmtToClose_tDBOutput_1 = null;
+						if ((pstmtToClose_tDBOutput_1 = (java.sql.PreparedStatement) resourceMap
+								.remove("pstmt_tDBOutput_1")) != null) {
+							pstmtToClose_tDBOutput_1.close();
 						}
 					}
 				} finally {
@@ -2226,6 +2424,6 @@ public class venues_DWH implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 68567 characters generated by Talend Open Studio for Data Integration on the
- * 23 février 2026, 22:28:33 WAT
+ * 70331 characters generated by Talend Open Studio for Data Integration on the
+ * 25 mars 2026, 23:13:33 WAT
  ************************************************************************************************/

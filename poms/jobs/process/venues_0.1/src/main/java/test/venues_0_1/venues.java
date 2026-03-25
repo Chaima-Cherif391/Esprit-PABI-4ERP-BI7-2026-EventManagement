@@ -284,14 +284,14 @@ public class venues implements TalendJob {
 		}
 	}
 
-	public void tFileInputExcel_2_error(Exception exception, String errorComponent,
+	public void tFileInputExcel_1_error(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap) throws TalendException {
 
 		end_Hash.put(errorComponent, System.currentTimeMillis());
 
 		status = "failure";
 
-		tFileInputExcel_2_onSubJobError(exception, errorComponent, globalMap);
+		tFileInputExcel_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
 	public void tDBOutput_1_error(Exception exception, String errorComponent,
@@ -301,10 +301,10 @@ public class venues implements TalendJob {
 
 		status = "failure";
 
-		tFileInputExcel_2_onSubJobError(exception, errorComponent, globalMap);
+		tFileInputExcel_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
-	public void tFileInputExcel_2_onSubJobError(Exception exception, String errorComponent,
+	public void tFileInputExcel_1_onSubJobError(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap) throws TalendException {
 
 		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread.currentThread().getId() + "", "FATAL", "",
@@ -627,8 +627,8 @@ public class venues implements TalendJob {
 
 	}
 
-	public void tFileInputExcel_2Process(final java.util.Map<String, Object> globalMap) throws TalendException {
-		globalMap.put("tFileInputExcel_2_SUBPROCESS_STATE", 0);
+	public void tFileInputExcel_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
+		globalMap.put("tFileInputExcel_1_SUBPROCESS_STATE", 0);
 
 		final boolean execStat = this.execStat;
 
@@ -709,7 +709,7 @@ public class venues implements TalendJob {
 				dbUser_tDBOutput_1 = "event";
 
 				final String decryptedPassword_tDBOutput_1 = routines.system.PasswordEncryptUtil
-						.decryptPassword("enc:routine.encryption.key.v1:NGn1vU5MZ7xFuEBGUNL+RiORnRNZUsVzkqtjxH1bdw==");
+						.decryptPassword("enc:routine.encryption.key.v1:Gvbndno0Rg9HmtUbCt2tE8BDhjKyPBQxznHuazchwA==");
 
 				String dbPwd_tDBOutput_1 = decryptedPassword_tDBOutput_1;
 				conn_tDBOutput_1 = java.sql.DriverManager.getConnection(url_tDBOutput_1, dbUser_tDBOutput_1,
@@ -744,40 +744,46 @@ public class venues implements TalendJob {
 				 */
 
 				/**
-				 * [tFileInputExcel_2 begin ] start
+				 * [tFileInputExcel_1 begin ] start
 				 */
 
-				ok_Hash.put("tFileInputExcel_2", false);
-				start_Hash.put("tFileInputExcel_2", System.currentTimeMillis());
+				ok_Hash.put("tFileInputExcel_1", false);
+				start_Hash.put("tFileInputExcel_1", System.currentTimeMillis());
 
-				currentComponent = "tFileInputExcel_2";
+				currentComponent = "tFileInputExcel_1";
 
-				int tos_count_tFileInputExcel_2 = 0;
+				int tos_count_tFileInputExcel_1 = 0;
 
-				class RegexUtil_tFileInputExcel_2 {
+				final String decryptedPassword_tFileInputExcel_1 = routines.system.PasswordEncryptUtil
+						.decryptPassword("enc:routine.encryption.key.v1:hyOKyMBk/i3GAZjBHb+fP/qk3yxe+iF5PxbIKQ==");
+				String password_tFileInputExcel_1 = decryptedPassword_tFileInputExcel_1;
+				if (password_tFileInputExcel_1.isEmpty()) {
+					password_tFileInputExcel_1 = null;
+				}
+				class RegexUtil_tFileInputExcel_1 {
 
-					public java.util.List<jxl.Sheet> getSheets(jxl.Workbook workbook, String oneSheetName,
+					public java.util.List<org.apache.poi.xssf.usermodel.XSSFSheet> getSheets(
+							org.apache.poi.xssf.usermodel.XSSFWorkbook workbook, String oneSheetName,
 							boolean useRegex) {
 
-						java.util.List<jxl.Sheet> list = new java.util.ArrayList<jxl.Sheet>();
+						java.util.List<org.apache.poi.xssf.usermodel.XSSFSheet> list = new java.util.ArrayList<org.apache.poi.xssf.usermodel.XSSFSheet>();
 
 						if (useRegex) {// this part process the regex issue
 
-							jxl.Sheet[] sheets = workbook.getSheets();
 							java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(oneSheetName);
-							for (int i = 0; i < sheets.length; i++) {
-								String sheetName = sheets[i].getName();
+							for (org.apache.poi.ss.usermodel.Sheet sheet : workbook) {
+								String sheetName = sheet.getSheetName();
 								java.util.regex.Matcher matcher = pattern.matcher(sheetName);
 								if (matcher.matches()) {
-									jxl.Sheet sheet = workbook.getSheet(sheetName);
 									if (sheet != null) {
-										list.add(sheet);
+										list.add((org.apache.poi.xssf.usermodel.XSSFSheet) sheet);
 									}
 								}
 							}
 
 						} else {
-							jxl.Sheet sheet = workbook.getSheet(oneSheetName);
+							org.apache.poi.xssf.usermodel.XSSFSheet sheet = (org.apache.poi.xssf.usermodel.XSSFSheet) workbook
+									.getSheet(oneSheetName);
 							if (sheet != null) {
 								list.add(sheet);
 							}
@@ -787,9 +793,11 @@ public class venues implements TalendJob {
 						return list;
 					}
 
-					public java.util.List<jxl.Sheet> getSheets(jxl.Workbook workbook, int index, boolean useRegex) {
-						java.util.List<jxl.Sheet> list = new java.util.ArrayList<jxl.Sheet>();
-						jxl.Sheet sheet = workbook.getSheet(index);
+					public java.util.List<org.apache.poi.xssf.usermodel.XSSFSheet> getSheets(
+							org.apache.poi.xssf.usermodel.XSSFWorkbook workbook, int index, boolean useRegex) {
+						java.util.List<org.apache.poi.xssf.usermodel.XSSFSheet> list = new java.util.ArrayList<org.apache.poi.xssf.usermodel.XSSFSheet>();
+						org.apache.poi.xssf.usermodel.XSSFSheet sheet = (org.apache.poi.xssf.usermodel.XSSFSheet) workbook
+								.getSheetAt(index);
 						if (sheet != null) {
 							list.add(sheet);
 						}
@@ -797,240 +805,285 @@ public class venues implements TalendJob {
 					}
 
 				}
+				RegexUtil_tFileInputExcel_1 regexUtil_tFileInputExcel_1 = new RegexUtil_tFileInputExcel_1();
 
-				RegexUtil_tFileInputExcel_2 regexUtil_tFileInputExcel_2 = new RegexUtil_tFileInputExcel_2();
-				final jxl.WorkbookSettings workbookSettings_tFileInputExcel_2 = new jxl.WorkbookSettings();
-				workbookSettings_tFileInputExcel_2.setDrawingsDisabled(true);
-				workbookSettings_tFileInputExcel_2.setEncoding("UTF-8");
+				Object source_tFileInputExcel_1 = "C:/Users/user/Downloads/fichier excel modifié/venues_clean_columns.xlsx";
+				org.apache.poi.xssf.usermodel.XSSFWorkbook workbook_tFileInputExcel_1 = null;
 
-				Object source_tFileInputExcel_2 = "C:/Users/user/Downloads/scraped_venues (1).xls";
-				final jxl.Workbook workbook_tFileInputExcel_2;
-
-				java.io.InputStream toClose_tFileInputExcel_2 = null;
-				java.io.BufferedInputStream buffIStreamtFileInputExcel_2 = null;
-				try {
-					if (source_tFileInputExcel_2 instanceof java.io.InputStream) {
-						toClose_tFileInputExcel_2 = (java.io.InputStream) source_tFileInputExcel_2;
-						buffIStreamtFileInputExcel_2 = new java.io.BufferedInputStream(toClose_tFileInputExcel_2);
-						workbook_tFileInputExcel_2 = jxl.Workbook.getWorkbook(buffIStreamtFileInputExcel_2,
-								workbookSettings_tFileInputExcel_2);
-					} else if (source_tFileInputExcel_2 instanceof String) {
-						toClose_tFileInputExcel_2 = new java.io.FileInputStream(source_tFileInputExcel_2.toString());
-						buffIStreamtFileInputExcel_2 = new java.io.BufferedInputStream(toClose_tFileInputExcel_2);
-						workbook_tFileInputExcel_2 = jxl.Workbook.getWorkbook(buffIStreamtFileInputExcel_2,
-								workbookSettings_tFileInputExcel_2);
-					} else {
-						workbook_tFileInputExcel_2 = null;
-						throw new java.lang.Exception(
-								"The data source should be specified as Inputstream or File Path!");
-					}
-				} finally {
-					try {
-						if (buffIStreamtFileInputExcel_2 != null) {
-							buffIStreamtFileInputExcel_2.close();
-						}
-					} catch (Exception e) {
-						globalMap.put("tFileInputExcel_2_ERROR_MESSAGE", e.getMessage());
-					}
+				if (source_tFileInputExcel_1 instanceof String) {
+					workbook_tFileInputExcel_1 = (org.apache.poi.xssf.usermodel.XSSFWorkbook) org.apache.poi.ss.usermodel.WorkbookFactory
+							.create(new java.io.File((String) source_tFileInputExcel_1), password_tFileInputExcel_1,
+									true);
+				} else if (source_tFileInputExcel_1 instanceof java.io.InputStream) {
+					workbook_tFileInputExcel_1 = (org.apache.poi.xssf.usermodel.XSSFWorkbook) org.apache.poi.ss.usermodel.WorkbookFactory
+							.create((java.io.InputStream) source_tFileInputExcel_1, password_tFileInputExcel_1);
+				} else {
+					workbook_tFileInputExcel_1 = null;
+					throw new java.lang.Exception("The data source should be specified as Inputstream or File Path!");
 				}
 				try {
-					java.util.List<jxl.Sheet> sheetList_tFileInputExcel_2 = java.util.Arrays.<jxl.Sheet>asList(
-							workbook_tFileInputExcel_2.getSheets());
-					if (sheetList_tFileInputExcel_2.size() <= 0) {
+
+					java.util.List<org.apache.poi.xssf.usermodel.XSSFSheet> sheetList_tFileInputExcel_1 = new java.util.ArrayList<org.apache.poi.xssf.usermodel.XSSFSheet>();
+					for (org.apache.poi.ss.usermodel.Sheet sheet_tFileInputExcel_1 : workbook_tFileInputExcel_1) {
+						sheetList_tFileInputExcel_1
+								.add((org.apache.poi.xssf.usermodel.XSSFSheet) sheet_tFileInputExcel_1);
+					}
+					if (sheetList_tFileInputExcel_1.size() <= 0) {
 						throw new RuntimeException("Special sheets not exist!");
 					}
 
-					java.util.List<jxl.Sheet> sheet_FilterNullList_tFileInputExcel_2 = new java.util.ArrayList<jxl.Sheet>();
-					for (jxl.Sheet sheet_FilterNull_tFileInputExcel_2 : sheetList_tFileInputExcel_2) {
-						if (sheet_FilterNull_tFileInputExcel_2.getRows() > 0) {
-							sheet_FilterNullList_tFileInputExcel_2.add(sheet_FilterNull_tFileInputExcel_2);
+					java.util.List<org.apache.poi.xssf.usermodel.XSSFSheet> sheetList_FilterNull_tFileInputExcel_1 = new java.util.ArrayList<org.apache.poi.xssf.usermodel.XSSFSheet>();
+					for (org.apache.poi.xssf.usermodel.XSSFSheet sheet_FilterNull_tFileInputExcel_1 : sheetList_tFileInputExcel_1) {
+						if (sheet_FilterNull_tFileInputExcel_1 != null
+								&& sheetList_FilterNull_tFileInputExcel_1.iterator() != null
+								&& sheet_FilterNull_tFileInputExcel_1.iterator().hasNext()) {
+							sheetList_FilterNull_tFileInputExcel_1.add(sheet_FilterNull_tFileInputExcel_1);
 						}
 					}
-					sheetList_tFileInputExcel_2 = sheet_FilterNullList_tFileInputExcel_2;
-					if (sheetList_tFileInputExcel_2.size() > 0) {
-						int nb_line_tFileInputExcel_2 = 0;
+					sheetList_tFileInputExcel_1 = sheetList_FilterNull_tFileInputExcel_1;
+					if (sheetList_tFileInputExcel_1.size() > 0) {
+						int nb_line_tFileInputExcel_1 = 0;
 
-						int begin_line_tFileInputExcel_2 = 1;
+						int begin_line_tFileInputExcel_1 = 1;
 
-						int footer_input_tFileInputExcel_2 = 0;
+						int footer_input_tFileInputExcel_1 = 0;
 
-						int end_line_tFileInputExcel_2 = 0;
-						for (jxl.Sheet sheet_tFileInputExcel_2 : sheetList_tFileInputExcel_2) {
-							end_line_tFileInputExcel_2 += sheet_tFileInputExcel_2.getRows();
+						int end_line_tFileInputExcel_1 = 0;
+						for (org.apache.poi.xssf.usermodel.XSSFSheet sheet_tFileInputExcel_1 : sheetList_tFileInputExcel_1) {
+							end_line_tFileInputExcel_1 += (sheet_tFileInputExcel_1.getLastRowNum() + 1);
 						}
-						end_line_tFileInputExcel_2 -= footer_input_tFileInputExcel_2;
-						int limit_tFileInputExcel_2 = -1;
-						int start_column_tFileInputExcel_2 = 1 - 1;
-						int end_column_tFileInputExcel_2 = sheetList_tFileInputExcel_2.get(0).getColumns();
-						jxl.Cell[] row_tFileInputExcel_2 = null;
-						jxl.Sheet sheet_tFileInputExcel_2 = sheetList_tFileInputExcel_2.get(0);
-						int rowCount_tFileInputExcel_2 = 0;
-						int sheetIndex_tFileInputExcel_2 = 0;
-						int currentRows_tFileInputExcel_2 = sheetList_tFileInputExcel_2.get(0).getRows();
+						end_line_tFileInputExcel_1 -= footer_input_tFileInputExcel_1;
+						int limit_tFileInputExcel_1 = -1;
+						int start_column_tFileInputExcel_1 = 1 - 1;
+						int end_column_tFileInputExcel_1 = -1;
+
+						org.apache.poi.xssf.usermodel.XSSFRow row_tFileInputExcel_1 = null;
+						org.apache.poi.xssf.usermodel.XSSFSheet sheet_tFileInputExcel_1 = sheetList_tFileInputExcel_1
+								.get(0);
+						int rowCount_tFileInputExcel_1 = 0;
+						int sheetIndex_tFileInputExcel_1 = 0;
+						int currentRows_tFileInputExcel_1 = (sheetList_tFileInputExcel_1.get(0).getLastRowNum() + 1);
 
 						// for the number format
-						java.text.DecimalFormat df_tFileInputExcel_2 = new java.text.DecimalFormat(
+						java.text.DecimalFormat df_tFileInputExcel_1 = new java.text.DecimalFormat(
 								"#.####################################");
-						char separatorChar_tFileInputExcel_2 = df_tFileInputExcel_2.getDecimalFormatSymbols()
+						char decimalChar_tFileInputExcel_1 = df_tFileInputExcel_1.getDecimalFormatSymbols()
 								.getDecimalSeparator();
 
-						for (int i_tFileInputExcel_2 = begin_line_tFileInputExcel_2; i_tFileInputExcel_2 < end_line_tFileInputExcel_2; i_tFileInputExcel_2++) {
+						for (int i_tFileInputExcel_1 = begin_line_tFileInputExcel_1; i_tFileInputExcel_1 < end_line_tFileInputExcel_1; i_tFileInputExcel_1++) {
 
-							int emptyColumnCount_tFileInputExcel_2 = 0;
+							int emptyColumnCount_tFileInputExcel_1 = 0;
 
-							if (limit_tFileInputExcel_2 != -1 && nb_line_tFileInputExcel_2 >= limit_tFileInputExcel_2) {
+							if (limit_tFileInputExcel_1 != -1 && nb_line_tFileInputExcel_1 >= limit_tFileInputExcel_1) {
 								break;
 							}
 
-							while (i_tFileInputExcel_2 >= rowCount_tFileInputExcel_2 + currentRows_tFileInputExcel_2) {
-								rowCount_tFileInputExcel_2 += currentRows_tFileInputExcel_2;
-								sheet_tFileInputExcel_2 = sheetList_tFileInputExcel_2
-										.get(++sheetIndex_tFileInputExcel_2);
-								currentRows_tFileInputExcel_2 = sheet_tFileInputExcel_2.getRows();
+							while (i_tFileInputExcel_1 >= rowCount_tFileInputExcel_1 + currentRows_tFileInputExcel_1) {
+								rowCount_tFileInputExcel_1 += currentRows_tFileInputExcel_1;
+								sheet_tFileInputExcel_1 = sheetList_tFileInputExcel_1
+										.get(++sheetIndex_tFileInputExcel_1);
+								currentRows_tFileInputExcel_1 = (sheet_tFileInputExcel_1.getLastRowNum() + 1);
 							}
-							if (rowCount_tFileInputExcel_2 <= i_tFileInputExcel_2) {
-								row_tFileInputExcel_2 = sheet_tFileInputExcel_2
-										.getRow(i_tFileInputExcel_2 - rowCount_tFileInputExcel_2);
+							globalMap.put("tFileInputExcel_1_CURRENT_SHEET", sheet_tFileInputExcel_1.getSheetName());
+							if (rowCount_tFileInputExcel_1 <= i_tFileInputExcel_1) {
+								row_tFileInputExcel_1 = sheet_tFileInputExcel_1
+										.getRow(i_tFileInputExcel_1 - rowCount_tFileInputExcel_1);
 							}
-							globalMap.put("tFileInputExcel_2_CURRENT_SHEET", sheet_tFileInputExcel_2.getName());
 							row1 = null;
-							int tempRowLength_tFileInputExcel_2 = 6;
+							int tempRowLength_tFileInputExcel_1 = 6;
 
-							int columnIndex_tFileInputExcel_2 = 0;
+							int columnIndex_tFileInputExcel_1 = 0;
 
-//
-//end%>
-
-							String[] temp_row_tFileInputExcel_2 = new String[tempRowLength_tFileInputExcel_2];
-							int actual_end_column_tFileInputExcel_2 = end_column_tFileInputExcel_2 > row_tFileInputExcel_2.length
-									? row_tFileInputExcel_2.length
-									: end_column_tFileInputExcel_2;
-
-							java.util.TimeZone zone_tFileInputExcel_2 = java.util.TimeZone.getTimeZone("GMT");
-							java.text.SimpleDateFormat sdf_tFileInputExcel_2 = new java.text.SimpleDateFormat(
-									"dd-MM-yyyy");
-							sdf_tFileInputExcel_2.setTimeZone(zone_tFileInputExcel_2);
-
-							for (int i = 0; i < tempRowLength_tFileInputExcel_2; i++) {
-
-								if (i + start_column_tFileInputExcel_2 < actual_end_column_tFileInputExcel_2) {
-
-									jxl.Cell cell_tFileInputExcel_2 = row_tFileInputExcel_2[i
-											+ start_column_tFileInputExcel_2];
-									temp_row_tFileInputExcel_2[i] = cell_tFileInputExcel_2.getContents();
+							String[] temp_row_tFileInputExcel_1 = new String[tempRowLength_tFileInputExcel_1];
+							int excel_end_column_tFileInputExcel_1;
+							if (row_tFileInputExcel_1 == null) {
+								excel_end_column_tFileInputExcel_1 = 0;
+							} else {
+								excel_end_column_tFileInputExcel_1 = row_tFileInputExcel_1.getLastCellNum();
+							}
+							int actual_end_column_tFileInputExcel_1;
+							if (end_column_tFileInputExcel_1 == -1) {
+								actual_end_column_tFileInputExcel_1 = excel_end_column_tFileInputExcel_1;
+							} else {
+								actual_end_column_tFileInputExcel_1 = end_column_tFileInputExcel_1 > excel_end_column_tFileInputExcel_1
+										? excel_end_column_tFileInputExcel_1
+										: end_column_tFileInputExcel_1;
+							}
+							org.apache.poi.ss.formula.eval.NumberEval ne_tFileInputExcel_1 = null;
+							for (int i = 0; i < tempRowLength_tFileInputExcel_1; i++) {
+								if (i + start_column_tFileInputExcel_1 < actual_end_column_tFileInputExcel_1) {
+									org.apache.poi.ss.usermodel.Cell cell_tFileInputExcel_1 = row_tFileInputExcel_1
+											.getCell(i + start_column_tFileInputExcel_1);
+									if (cell_tFileInputExcel_1 != null) {
+										switch (cell_tFileInputExcel_1.getCellType()) {
+										case STRING:
+											temp_row_tFileInputExcel_1[i] = cell_tFileInputExcel_1
+													.getRichStringCellValue().getString();
+											break;
+										case NUMERIC:
+											if (org.apache.poi.ss.usermodel.DateUtil
+													.isCellDateFormatted(cell_tFileInputExcel_1)) {
+												temp_row_tFileInputExcel_1[i] = cell_tFileInputExcel_1
+														.getDateCellValue().toString();
+											} else {
+												temp_row_tFileInputExcel_1[i] = df_tFileInputExcel_1
+														.format(cell_tFileInputExcel_1.getNumericCellValue());
+											}
+											break;
+										case BOOLEAN:
+											temp_row_tFileInputExcel_1[i] = String
+													.valueOf(cell_tFileInputExcel_1.getBooleanCellValue());
+											break;
+										case FORMULA:
+											switch (cell_tFileInputExcel_1.getCachedFormulaResultType()) {
+											case STRING:
+												temp_row_tFileInputExcel_1[i] = cell_tFileInputExcel_1
+														.getRichStringCellValue().getString();
+												break;
+											case NUMERIC:
+												if (org.apache.poi.ss.usermodel.DateUtil
+														.isCellDateFormatted(cell_tFileInputExcel_1)) {
+													temp_row_tFileInputExcel_1[i] = cell_tFileInputExcel_1
+															.getDateCellValue().toString();
+												} else {
+													ne_tFileInputExcel_1 = new org.apache.poi.ss.formula.eval.NumberEval(
+															cell_tFileInputExcel_1.getNumericCellValue());
+													temp_row_tFileInputExcel_1[i] = ne_tFileInputExcel_1
+															.getStringValue();
+												}
+												break;
+											case BOOLEAN:
+												temp_row_tFileInputExcel_1[i] = String
+														.valueOf(cell_tFileInputExcel_1.getBooleanCellValue());
+												break;
+											default:
+												temp_row_tFileInputExcel_1[i] = "";
+											}
+											break;
+										default:
+											temp_row_tFileInputExcel_1[i] = "";
+										}
+									} else {
+										temp_row_tFileInputExcel_1[i] = "";
+									}
 
 								} else {
-									temp_row_tFileInputExcel_2[i] = "";
+									temp_row_tFileInputExcel_1[i] = "";
 								}
 							}
-
-							boolean whetherReject_tFileInputExcel_2 = false;
+							boolean whetherReject_tFileInputExcel_1 = false;
 							row1 = new row1Struct();
-							int curColNum_tFileInputExcel_2 = -1;
-							String curColName_tFileInputExcel_2 = "";
+							int curColNum_tFileInputExcel_1 = -1;
+							String curColName_tFileInputExcel_1 = "";
 							try {
-								columnIndex_tFileInputExcel_2 = 0;
+								columnIndex_tFileInputExcel_1 = 0;
 
-								if (temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2].length() > 0) {
-									curColNum_tFileInputExcel_2 = columnIndex_tFileInputExcel_2
-											+ start_column_tFileInputExcel_2 + 1;
-									curColName_tFileInputExcel_2 = "venue_name";
-									row1.venue_name = temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2];
+								if (temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1].length() > 0) {
+									curColNum_tFileInputExcel_1 = columnIndex_tFileInputExcel_1
+											+ start_column_tFileInputExcel_1 + 1;
+									curColName_tFileInputExcel_1 = "venue_name";
+
+									row1.venue_name = temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1];
 								} else {
 									row1.venue_name = null;
-									emptyColumnCount_tFileInputExcel_2++;
+									emptyColumnCount_tFileInputExcel_1++;
 								}
-								columnIndex_tFileInputExcel_2 = 1;
+								columnIndex_tFileInputExcel_1 = 1;
 
-								if (temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2].length() > 0) {
-									curColNum_tFileInputExcel_2 = columnIndex_tFileInputExcel_2
-											+ start_column_tFileInputExcel_2 + 1;
-									curColName_tFileInputExcel_2 = "city";
-									row1.city = temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2];
+								if (temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1].length() > 0) {
+									curColNum_tFileInputExcel_1 = columnIndex_tFileInputExcel_1
+											+ start_column_tFileInputExcel_1 + 1;
+									curColName_tFileInputExcel_1 = "city";
+
+									row1.city = temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1];
 								} else {
 									row1.city = null;
-									emptyColumnCount_tFileInputExcel_2++;
+									emptyColumnCount_tFileInputExcel_1++;
 								}
-								columnIndex_tFileInputExcel_2 = 2;
+								columnIndex_tFileInputExcel_1 = 2;
 
-								if (temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2].length() > 0) {
-									curColNum_tFileInputExcel_2 = columnIndex_tFileInputExcel_2
-											+ start_column_tFileInputExcel_2 + 1;
-									curColName_tFileInputExcel_2 = "venue_type";
-									row1.venue_type = temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2];
+								if (temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1].length() > 0) {
+									curColNum_tFileInputExcel_1 = columnIndex_tFileInputExcel_1
+											+ start_column_tFileInputExcel_1 + 1;
+									curColName_tFileInputExcel_1 = "venue_type";
+
+									row1.venue_type = temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1];
 								} else {
 									row1.venue_type = null;
-									emptyColumnCount_tFileInputExcel_2++;
+									emptyColumnCount_tFileInputExcel_1++;
 								}
-								columnIndex_tFileInputExcel_2 = 3;
+								columnIndex_tFileInputExcel_1 = 3;
 
-								if (temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2].length() > 0) {
-									curColNum_tFileInputExcel_2 = columnIndex_tFileInputExcel_2
-											+ start_column_tFileInputExcel_2 + 1;
-									curColName_tFileInputExcel_2 = "capacity_min";
-									row1.capacity_min = ParserUtils
-											.parseTo_Integer(temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2]);
+								if (temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1].length() > 0) {
+									curColNum_tFileInputExcel_1 = columnIndex_tFileInputExcel_1
+											+ start_column_tFileInputExcel_1 + 1;
+									curColName_tFileInputExcel_1 = "capacity_min";
+
+									row1.capacity_min = ParserUtils.parseTo_Integer(ParserUtils.parseTo_Number(
+											temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1], ';', '.'));
 								} else {
 									row1.capacity_min = null;
-									emptyColumnCount_tFileInputExcel_2++;
+									emptyColumnCount_tFileInputExcel_1++;
 								}
-								columnIndex_tFileInputExcel_2 = 4;
+								columnIndex_tFileInputExcel_1 = 4;
 
-								if (temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2].length() > 0) {
-									curColNum_tFileInputExcel_2 = columnIndex_tFileInputExcel_2
-											+ start_column_tFileInputExcel_2 + 1;
-									curColName_tFileInputExcel_2 = "capacity_max";
-									row1.capacity_max = ParserUtils
-											.parseTo_Integer(temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2]);
+								if (temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1].length() > 0) {
+									curColNum_tFileInputExcel_1 = columnIndex_tFileInputExcel_1
+											+ start_column_tFileInputExcel_1 + 1;
+									curColName_tFileInputExcel_1 = "capacity_max";
+
+									row1.capacity_max = ParserUtils.parseTo_Integer(ParserUtils.parseTo_Number(
+											temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1], ';', '.'));
 								} else {
 									row1.capacity_max = null;
-									emptyColumnCount_tFileInputExcel_2++;
+									emptyColumnCount_tFileInputExcel_1++;
 								}
-								columnIndex_tFileInputExcel_2 = 5;
+								columnIndex_tFileInputExcel_1 = 5;
 
-								if (temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2].length() > 0) {
-									curColNum_tFileInputExcel_2 = columnIndex_tFileInputExcel_2
-											+ start_column_tFileInputExcel_2 + 1;
-									curColName_tFileInputExcel_2 = "raw_capacity";
-									row1.raw_capacity = temp_row_tFileInputExcel_2[columnIndex_tFileInputExcel_2];
+								if (temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1].length() > 0) {
+									curColNum_tFileInputExcel_1 = columnIndex_tFileInputExcel_1
+											+ start_column_tFileInputExcel_1 + 1;
+									curColName_tFileInputExcel_1 = "raw_capacity";
+
+									row1.raw_capacity = temp_row_tFileInputExcel_1[columnIndex_tFileInputExcel_1];
 								} else {
 									row1.raw_capacity = null;
-									emptyColumnCount_tFileInputExcel_2++;
+									emptyColumnCount_tFileInputExcel_1++;
 								}
 
-								nb_line_tFileInputExcel_2++;
+								nb_line_tFileInputExcel_1++;
 
 							} catch (java.lang.Exception e) {
-								globalMap.put("tFileInputExcel_2_ERROR_MESSAGE", e.getMessage());
-								whetherReject_tFileInputExcel_2 = true;
+								globalMap.put("tFileInputExcel_1_ERROR_MESSAGE", e.getMessage());
+								whetherReject_tFileInputExcel_1 = true;
 								System.err.println(e.getMessage());
 								row1 = null;
 							}
 
 							/**
-							 * [tFileInputExcel_2 begin ] stop
+							 * [tFileInputExcel_1 begin ] stop
 							 */
 
 							/**
-							 * [tFileInputExcel_2 main ] start
+							 * [tFileInputExcel_1 main ] start
 							 */
 
-							currentComponent = "tFileInputExcel_2";
+							currentComponent = "tFileInputExcel_1";
 
-							tos_count_tFileInputExcel_2++;
+							tos_count_tFileInputExcel_1++;
 
 							/**
-							 * [tFileInputExcel_2 main ] stop
+							 * [tFileInputExcel_1 main ] stop
 							 */
 
 							/**
-							 * [tFileInputExcel_2 process_data_begin ] start
+							 * [tFileInputExcel_1 process_data_begin ] start
 							 */
 
-							currentComponent = "tFileInputExcel_2";
+							currentComponent = "tFileInputExcel_1";
 
 							/**
-							 * [tFileInputExcel_2 process_data_begin ] stop
+							 * [tFileInputExcel_1 process_data_begin ] stop
 							 */
 // Start of branch "row1"
 							if (row1 != null) {
@@ -1203,40 +1256,40 @@ public class venues implements TalendJob {
 							} // End of branch "row1"
 
 							/**
-							 * [tFileInputExcel_2 process_data_end ] start
+							 * [tFileInputExcel_1 process_data_end ] start
 							 */
 
-							currentComponent = "tFileInputExcel_2";
+							currentComponent = "tFileInputExcel_1";
 
 							/**
-							 * [tFileInputExcel_2 process_data_end ] stop
+							 * [tFileInputExcel_1 process_data_end ] stop
 							 */
 
 							/**
-							 * [tFileInputExcel_2 end ] start
+							 * [tFileInputExcel_1 end ] start
 							 */
 
-							currentComponent = "tFileInputExcel_2";
+							currentComponent = "tFileInputExcel_1";
 
 						}
 
-						globalMap.put("tFileInputExcel_2_NB_LINE", nb_line_tFileInputExcel_2);
+						globalMap.put("tFileInputExcel_1_NB_LINE", nb_line_tFileInputExcel_1);
 
 					}
 
 				} finally {
 
-					if (!(source_tFileInputExcel_2 instanceof java.io.InputStream)) {
-						workbook_tFileInputExcel_2.close();
+					if (!(source_tFileInputExcel_1 instanceof java.io.InputStream)) {
+						workbook_tFileInputExcel_1.getPackage().revert();
 					}
 
 				}
 
-				ok_Hash.put("tFileInputExcel_2", true);
-				end_Hash.put("tFileInputExcel_2", System.currentTimeMillis());
+				ok_Hash.put("tFileInputExcel_1", true);
+				end_Hash.put("tFileInputExcel_1", System.currentTimeMillis());
 
 				/**
-				 * [tFileInputExcel_2 end ] stop
+				 * [tFileInputExcel_1 end ] stop
 				 */
 
 				/**
@@ -1333,13 +1386,13 @@ public class venues implements TalendJob {
 			try {
 
 				/**
-				 * [tFileInputExcel_2 finally ] start
+				 * [tFileInputExcel_1 finally ] start
 				 */
 
-				currentComponent = "tFileInputExcel_2";
+				currentComponent = "tFileInputExcel_1";
 
 				/**
-				 * [tFileInputExcel_2 finally ] stop
+				 * [tFileInputExcel_1 finally ] stop
 				 */
 
 				/**
@@ -1383,7 +1436,7 @@ public class venues implements TalendJob {
 			resourceMap = null;
 		}
 
-		globalMap.put("tFileInputExcel_2_SUBPROCESS_STATE", 1);
+		globalMap.put("tFileInputExcel_1_SUBPROCESS_STATE", 1);
 	}
 
 	public String resuming_logs_dir_path = null;
@@ -1591,14 +1644,14 @@ public class venues implements TalendJob {
 
 		try {
 			errorCode = null;
-			tFileInputExcel_2Process(globalMap);
+			tFileInputExcel_1Process(globalMap);
 			if (!"failure".equals(status)) {
 				status = "end";
 			}
-		} catch (TalendException e_tFileInputExcel_2) {
-			globalMap.put("tFileInputExcel_2_SUBPROCESS_STATE", -1);
+		} catch (TalendException e_tFileInputExcel_1) {
+			globalMap.put("tFileInputExcel_1_SUBPROCESS_STATE", -1);
 
-			e_tFileInputExcel_2.printStackTrace();
+			e_tFileInputExcel_1.printStackTrace();
 
 		}
 
@@ -1753,6 +1806,6 @@ public class venues implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 58383 characters generated by Talend Open Studio for Data Integration on the
- * 18 février 2026, 18:26:14 WAT
+ * 61446 characters generated by Talend Open Studio for Data Integration on the
+ * 25 mars 2026, 23:12:54 WAT
  ************************************************************************************************/
